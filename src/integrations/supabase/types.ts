@@ -62,6 +62,24 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: { id: string; nome: string | null; empresa: string | null; plano: string; templates: string[]; criado_em: string }
+        Insert: { id: string; nome?: string | null; empresa?: string | null; plano?: string; templates?: string[]; criado_em?: string }
+        Update: { id?: string; nome?: string | null; empresa?: string | null; plano?: string; templates?: string[]; criado_em?: string }
+        Relationships: []
+      }
+      parceiros: {
+        Row: { id: string; user_id: string; nome: string; tipo: string | null; cidade: string | null; status: string; entrou_em: string; criado_em: string }
+        Insert: { id?: string; user_id?: string; nome: string; tipo?: string | null; cidade?: string | null; status?: string; entrou_em?: string; criado_em?: string }
+        Update: { id?: string; user_id?: string; nome?: string; tipo?: string | null; cidade?: string | null; status?: string; entrou_em?: string; criado_em?: string }
+        Relationships: []
+      }
+      vendas: {
+        Row: { id: string; user_id: string; parceiro_id: string; mes: string; clientes: number; valor: number; criado_em: string }
+        Insert: { id?: string; user_id?: string; parceiro_id: string; mes: string; clientes?: number; valor?: number; criado_em?: string }
+        Update: { id?: string; user_id?: string; parceiro_id?: string; mes?: string; clientes?: number; valor?: number; criado_em?: string }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
