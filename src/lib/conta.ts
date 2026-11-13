@@ -79,6 +79,8 @@ export function mensagemDeErro(e: unknown): string {
   if (/Email not confirmed/i.test(m)) return "Confirme seu e-mail pelo link que enviamos antes de entrar.";
   if (/Password should be at least/i.test(m)) return "A senha precisa ter pelo menos 6 caracteres.";
   if (/rate limit/i.test(m)) return "Muitas tentativas seguidas. Espere um pouco e tente de novo.";
-  if (/valid email|invalid format/i.test(m)) return "Informe um e-mail válido.";
+  if (/valid email|invalid format|email address .* is invalid/i.test(m)) return "Esse e-mail não foi aceito. Confira se está certo.";
+  if (/not authorized/i.test(m)) return "Não conseguimos enviar o e-mail de confirmação agora. Fale com a gente pelo suporte.";
+  if (/error sending/i.test(m)) return "Não conseguimos enviar o e-mail agora. Tente de novo em alguns minutos.";
   return "Algo deu errado. Tente de novo em instantes.";
 }
