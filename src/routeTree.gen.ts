@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as NovaSenhaRouteImport } from './routes/nova-senha'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AppConfiguracoesRouteImport } from './routes/app/configuracoes'
 import { Route as AppDashboardsRouteImport } from './routes/app/dashboards'
@@ -32,6 +33,11 @@ const AppRoute = AppRouteImport.update({
 const EntrarRoute = EntrarRouteImport.update({
   id: '/entrar',
   path: '/entrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovaSenhaRoute = NovaSenhaRouteImport.update({
+  id: '/nova-senha',
+  path: '/nova-senha',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/entrar': typeof EntrarRoute
+  '/nova-senha': typeof NovaSenhaRoute
   '/app/configuracoes': typeof AppConfiguracoesRoute
   '/app/dashboards': typeof AppDashboardsRoute
   '/app/parceiros': typeof AppParceirosRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/entrar': typeof EntrarRoute
+  '/nova-senha': typeof NovaSenhaRoute
   '/app/configuracoes': typeof AppConfiguracoesRoute
   '/app/dashboards': typeof AppDashboardsRoute
   '/app/parceiros': typeof AppParceirosRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/entrar': typeof EntrarRoute
+  '/nova-senha': typeof NovaSenhaRoute
   '/app/configuracoes': typeof AppConfiguracoesRoute
   '/app/dashboards': typeof AppDashboardsRoute
   '/app/parceiros': typeof AppParceirosRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/entrar'
+    | '/nova-senha'
     | '/app/configuracoes'
     | '/app/dashboards'
     | '/app/parceiros'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/entrar'
+    | '/nova-senha'
     | '/app/configuracoes'
     | '/app/dashboards'
     | '/app/parceiros'
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/entrar'
+    | '/nova-senha'
     | '/app/configuracoes'
     | '/app/dashboards'
     | '/app/parceiros'
@@ -137,6 +149,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   EntrarRoute: typeof EntrarRoute
+  NovaSenhaRoute: typeof NovaSenhaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -160,6 +173,13 @@ declare module '@tanstack/react-router' {
       path: '/entrar'
       fullPath: '/entrar'
       preLoaderRoute: typeof EntrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nova-senha': {
+      id: '/nova-senha'
+      path: '/nova-senha'
+      fullPath: '/nova-senha'
+      preLoaderRoute: typeof NovaSenhaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/': {
@@ -231,6 +251,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   EntrarRoute: EntrarRoute,
+  NovaSenhaRoute: NovaSenhaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

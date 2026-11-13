@@ -12,7 +12,7 @@ type Busca = { pro?: boolean };
 
 export const Route = createFileRoute("/app")({
   ssr: false,
-  validateSearch: (s: Record<string, unknown>): Busca => (s.pro === true || s.pro === "true" ? { pro: true } : {}),
+  validateSearch: (s: Record<string, unknown>): Busca => (s["pro"] === true || s["pro"] === "true" ? { pro: true } : {}),
   head: () => ({ meta: [{ title: "Orbe" }, { name: "robots", content: "noindex" }] }),
   component: AreaDoCliente,
 });

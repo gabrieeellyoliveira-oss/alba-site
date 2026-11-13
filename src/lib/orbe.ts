@@ -45,13 +45,18 @@ export function inicioDoMes(d = new Date()) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-01`;
 }
 
+function anoMes(mes: string): [number, number] {
+  const [a = 1970, m = 1] = mes.split("-").map(Number);
+  return [a, m];
+}
+
 export function somarMeses(mes: string, n: number) {
-  const [a, m] = mes.split("-").map(Number);
+  const [a, m] = anoMes(mes);
   return inicioDoMes(new Date(a, m - 1 + n, 1));
 }
 
 export function nomeDoMes(mes: string, curto = false) {
-  const [a, m] = mes.split("-").map(Number);
+  const [a, m] = anoMes(mes);
   const s = new Date(a, m - 1, 1).toLocaleDateString("pt-BR", curto ? { month: "short" } : { month: "long", year: "numeric" });
   return s.charAt(0).toUpperCase() + s.slice(1).replace(".", "");
 }

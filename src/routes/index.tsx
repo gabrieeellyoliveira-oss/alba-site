@@ -262,8 +262,8 @@ function Index() {
         </section>
       </main>
       <footer className="mx-auto flex max-w-6xl flex-col justify-between gap-2 px-5 py-10 text-sm text-muted-foreground sm:flex-row">
-        <p>Orbe · {SLOGAN}</p>
-        <p>© 2026 Orbe</p>
+        <p>ORBE · {SLOGAN}</p>
+        <p>© 2026 ORBE</p>
       </footer>
     </div>
   );
