@@ -81,8 +81,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Alba | Painel para gestão de parceiros, metas e treinamentos" },
-      { property: "og:site_name", content: "Alba" },
+      { title: "Orbe | Ecossistemas que crescem juntos" },
+      { property: "og:site_name", content: "Orbe" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

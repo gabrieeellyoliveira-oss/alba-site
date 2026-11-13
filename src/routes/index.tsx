@@ -1,11 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, Check, Menu, X, Users, Target, GraduationCap, Minus, Plus } from "lucide-react";
-import { Logo, Blob } from "@/components/alba/Logo";
-import { LeadForm } from "@/components/alba/LeadForm";
+import { Logo, Blob } from "@/components/orbe/Logo";
+import { ITENS_GRATUITO, ITENS_PRO } from "@/components/orbe/ProModal";
+import { SLOGAN } from "@/lib/orbe";
 
-const TITLE = "Alba | Painel para gestão de parceiros, metas e treinamentos";
-const DESC = "Painel pronto para quem vende com parceiros: performance e ranking da rede, metas do time de canal e kits de treinamento. A equipe da Alba implanta tudo para você.";
+const TITLE = "Orbe | Ecossistemas que crescem juntos";
+const DESC = "Painel pronto para quem vende com parceiros: performance e ranking da rede, metas do time de canal e kits de treinamento. Crie sua conta grátis e comece hoje.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,9 +38,9 @@ const Tag = ({ children, tone = "pink" }: { children: ReactNode; tone?: "pink" |
 );
 
 const CtaButton = ({ className = "" }: { className?: string }) => (
-  <a href="#contato" className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 font-semibold text-ink-foreground transition hover:-translate-y-0.5 ${className}`}>
-    Agendar demonstração <ArrowRight className="h-5 w-5" aria-hidden="true" />
-  </a>
+  <Link to="/entrar" search={{ modo: "cadastro" }} className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-6 py-3 font-semibold text-ink-foreground transition hover:-translate-y-0.5 ${className}`}>
+    Criar conta grátis <ArrowRight className="h-5 w-5" aria-hidden="true" />
+  </Link>
 );
 
 function Nav() {
@@ -52,7 +53,7 @@ function Nav() {
         <nav aria-label="Principal" className="hidden rounded-full bg-surface p-1.5 shadow-soft md:block">
           <ul className="flex">{links.map(([l, h]) => <li key={h}><a href={h} className="inline-flex min-h-11 items-center rounded-full px-5 font-medium text-muted-foreground transition hover:bg-lilac hover:text-foreground">{l}</a></li>)}</ul>
         </nav>
-        <div className="hidden md:block"><CtaButton /></div>
+        <div className="hidden items-center gap-2 md:flex"><Link to="/entrar" search={{ modo: "login" }} className="inline-flex min-h-11 items-center rounded-full px-4 font-semibold hover:bg-lilac">Entrar</Link><CtaButton /></div>
         <button type="button" className="grid h-12 w-12 place-items-center rounded-full bg-surface shadow-soft md:hidden" aria-expanded={open} aria-controls="menu-mobile" aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen(!open)}>
           {open ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
         </button>
@@ -60,7 +61,8 @@ function Nav() {
       {open && (
         <nav id="menu-mobile" aria-label="Menu" className="mx-5 mb-4 rounded-[1.75rem] bg-surface p-3 shadow-soft md:hidden">
           <ul>{links.map(([l, h]) => <li key={h}><a href={h} onClick={() => setOpen(false)} className="flex min-h-12 items-center rounded-full px-4 text-lg font-medium">{l}</a></li>)}</ul>
-          <a href="#contato" onClick={() => setOpen(false)} className="mt-2 flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink font-semibold text-ink-foreground">Agendar demonstração <ArrowRight className="h-5 w-5" aria-hidden="true" /></a>
+          <Link to="/entrar" search={{ modo: "login" }} onClick={() => setOpen(false)} className="mt-2 flex min-h-12 items-center justify-center rounded-full font-semibold">Entrar</Link>
+          <Link to="/entrar" search={{ modo: "cadastro" }} onClick={() => setOpen(false)} className="mt-2 flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink font-semibold text-ink-foreground">Criar conta grátis <ArrowRight className="h-5 w-5" aria-hidden="true" /></Link>
         </nav>
       )}
     </header>
@@ -71,7 +73,7 @@ function DashboardPreview() {
   const bars = [["S", 50], ["T", 75], ["Q", 100], ["Q", 25], ["S", 62], ["S", 38], ["D", 14]] as const;
   return (
     <figure className="reveal">
-      <div className="-rotate-[1.5deg] rounded-[2.25rem] bg-ink p-4 shadow-soft sm:p-5" aria-label="Prévia ilustrativa do painel Alba" role="img">
+      <div className="-rotate-[1.5deg] rounded-[2.25rem] bg-ink p-4 shadow-soft sm:p-5" aria-label="Prévia ilustrativa do painel Orbe" role="img">
         <div className="grid grid-cols-2 gap-3">
           <div className="rounded-[1.5rem] bg-pink-soft p-4">
             <p className="text-sm font-medium">Meta do mês</p>
@@ -116,10 +118,9 @@ const steps = [
   ["Acompanhamos com você", "Suporte, atualização dos dados e novos treinamentos todo mês."],
 ];
 const plans = [
-  { n: "Essencial", d: "Para quem quer parar de controlar parceiros na planilha.", i: ["Dashboard de performance dos parceiros", "Ranking e destaques do mês", "Alertas de parceiros parados", "Suporte por WhatsApp"], dark: false },
-  { n: "Pro", d: "Para quem quer bater meta e acelerar parceiros novos.", i: ["Tudo do Essencial", "Metas do canal e meta por pessoa", "Funil de onboarding de parceiros", "Kits de treinamento prontos"], dark: true },
-  { n: "Completo", d: "Para redes grandes que querem tudo sob medida.", i: ["Tudo do Pro", "Treinamentos personalizados com a sua marca", "Portal para o próprio parceiro", "Reunião mensal de acompanhamento"], dark: false },
-];
+  { n: "Gratuito", plano: "gratuito", d: "O essencial para organizar sua rede.", preco: "Grátis", i: ITENS_GRATUITO, botao: "Começar grátis", dark: false },
+  { n: "Pro", plano: "pro", d: "Tudo o que você precisa para ir mais longe.", preco: "Fale com a gente", i: ITENS_PRO, botao: "Assinar o Pro", dark: true },
+] as const;
 const faqs = [
   ["Preciso trocar de CRM para usar?", "Não. Trabalhamos com os dados que vocês já têm, seja planilha ou CRM. Na conversa inicial vemos qual é o melhor caminho para a sua empresa."],
   ["Quanto tempo leva para o painel ficar pronto?", "Depende principalmente de como os dados dos parceiros estão organizados hoje. Na conversa inicial passamos uma estimativa para o seu caso."],
@@ -130,9 +131,7 @@ const faqs = [
 
 function Index() {
   useReveal();
-  const [plano, setPlano] = useState("Ainda não sei");
   const [faq, setFaq] = useState<number | null>(0);
-  const choose = (p: string) => { setPlano(p); document.getElementById("contato")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); };
 
   return (
     <div id="topo" className="min-h-screen overflow-x-hidden">
@@ -213,20 +212,19 @@ function Index() {
         <section id="planos" className="mx-auto max-w-6xl px-5 py-24">
           <div className="reveal mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold leading-tight tracking-tight sm:text-5xl">Comece com o essencial. Cresça quando quiser.</h2>
-            <p className="mt-4 text-lg text-muted-foreground">Todos os planos incluem a implantação feita pela nossa equipe.</p>
+            <p className="mt-4 text-lg text-muted-foreground">Crie sua conta grátis e faça upgrade quando quiser.</p>
           </div>
-          <p className="reveal mx-auto mt-10 max-w-4xl rounded-[2rem] bg-pink px-6 py-4 text-center font-medium text-pink-foreground sm:rounded-full">Programa de clientes fundadores: as primeiras empresas entram com condição especial e ajudam a moldar o produto.</p>
-          <div className="mt-8 grid items-stretch gap-5 lg:grid-cols-3">
-            {plans.map(({ n, d, i, dark }) => (
+          <div className="mx-auto mt-12 grid max-w-4xl items-stretch gap-5 md:grid-cols-2">
+            {plans.map(({ n, plano, d, preco, i, botao, dark }) => (
               <article key={n} className={`reveal relative flex flex-col overflow-hidden rounded-[2.25rem] p-8 ${dark ? "bg-ink text-ink-foreground shadow-soft lg:-my-4 lg:py-12" : "bg-surface"}`}>
                 {dark && <Blob className="-bottom-20 -right-20 h-56 w-56 text-ink-card" />}
                 <h3 className="relative text-2xl font-semibold">{n}</h3>
                 <p className={`relative mt-2 ${dark ? "text-ink-muted" : "text-muted-foreground"}`}>{d}</p>
-                <p className="relative mt-6 text-3xl font-bold">Sob consulta</p>
+                <p className="relative mt-6 text-3xl font-bold">{preco}</p>
                 <ul className="relative mt-6 flex-1 space-y-3">
                   {i.map((x) => <li key={x} className="flex gap-3"><span className={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full ${dark ? "bg-pink text-foreground" : "bg-pink-soft"}`}><Check className="h-4 w-4" aria-hidden="true" /></span>{x}</li>)}
                 </ul>
-                <button type="button" onClick={() => choose(n)} className={`relative mt-8 min-h-12 rounded-full px-6 py-3 font-semibold transition hover:-translate-y-0.5 ${dark ? "bg-pink text-pink-foreground" : "bg-ink text-ink-foreground"}`}>Quero esse plano</button>
+                <Link to="/entrar" search={{ modo: "cadastro", plano }} className={`relative mt-8 flex min-h-12 items-center justify-center rounded-full px-6 py-3 font-semibold transition hover:-translate-y-0.5 ${dark ? "bg-pink text-pink-foreground" : "bg-ink text-ink-foreground"}`}>{botao}</Link>
               </article>
             ))}
           </div>
@@ -253,21 +251,19 @@ function Index() {
           </div>
         </section>
 
-        {/* Contato */}
-        <section id="contato" className="px-3 pb-10 sm:px-5">
-          <div className="relative mx-auto grid max-w-6xl gap-10 overflow-hidden rounded-[2.5rem] bg-night px-6 py-14 text-ink-foreground sm:px-12 sm:py-20 lg:grid-cols-[0.8fr_1.2fr]">
+        {/* Chamada final */}
+        <section id="comecar" className="px-3 pb-10 sm:px-5">
+          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-night px-6 py-14 text-center text-ink-foreground sm:px-12 sm:py-20">
             <Blob className="-bottom-28 -right-28 h-80 w-80 text-pink" />
-            <div className="reveal relative">
-              <h2 className="text-3xl font-bold leading-tight tracking-tight sm:text-5xl">Veja o painel com os dados da sua rede.</h2>
-              <p className="mt-5 text-lg leading-relaxed text-ink-muted">Em 30 minutos mostramos como ficaria o painel da sua empresa e quanto tempo levaria para colocar no ar.</p>
-            </div>
-            <div className="reveal relative"><LeadForm plano={plano} setPlano={setPlano} /></div>
+            <h2 className="reveal relative mx-auto max-w-3xl text-3xl font-bold leading-tight tracking-tight sm:text-5xl">Sua rede de parceiros, em um só lugar.</h2>
+            <p className="reveal relative mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-muted">Crie sua conta grátis e cadastre até 10 parceiros. Quando quiser mais, é só fazer upgrade.</p>
+            <Link to="/entrar" search={{ modo: "cadastro" }} className="reveal relative mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-pink px-7 py-4 text-lg font-semibold text-pink-foreground transition hover:-translate-y-0.5">Criar conta grátis <ArrowRight className="h-5 w-5" aria-hidden="true" /></Link>
           </div>
         </section>
       </main>
       <footer className="mx-auto flex max-w-6xl flex-col justify-between gap-2 px-5 py-10 text-sm text-muted-foreground sm:flex-row">
-        <p>Alba · Painel para ecossistemas de parceiros</p>
-        <p>© 2026 Alba</p>
+        <p>Orbe · {SLOGAN}</p>
+        <p>© 2026 Orbe</p>
       </footer>
     </div>
   );

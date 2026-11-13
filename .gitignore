@@ -34,3 +34,6 @@ dist-ssr
 # Local env / Vercel build output (env vars ficam na Vercel)
 .env
 .vercel
+
+.vercel
+.env*

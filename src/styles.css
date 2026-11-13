@@ -84,6 +84,8 @@
   --color-ink-muted: var(--ink-muted);
   --color-night: var(--night);
   --color-surface: var(--surface);
+  --color-plum: var(--plum);
+  --color-plum-foreground: var(--plum-foreground);
 }
 
 :root {
@@ -112,6 +114,8 @@
   --ink-foreground: oklch(0.97 0.003 314);
   --ink-muted: oklch(0.78 0.01 300);
   --night: oklch(0.19 0.012 320);
+  --plum: oklch(0.3 0.075 345);
+  --plum-foreground: oklch(0.985 0.003 314);
   --destructive: oklch(0.52 0.2 27);
   --destructive-foreground: oklch(0.99 0 0);
   --border: oklch(0.91 0.008 314);

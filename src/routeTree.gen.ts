@@ -10,33 +10,133 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppConfiguracoesRouteImport } from './routes/app/configuracoes'
+import { Route as AppDashboardsRouteImport } from './routes/app/dashboards'
+import { Route as AppParceirosRouteImport } from './routes/app/parceiros'
+import { Route as AppRankingRouteImport } from './routes/app/ranking'
+import { Route as AppVisaoGeralRouteImport } from './routes/app/visao-geral'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EntrarRoute = EntrarRouteImport.update({
+  id: '/entrar',
+  path: '/entrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConfiguracoesRoute = AppConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardsRoute = AppDashboardsRouteImport.update({
+  id: '/dashboards',
+  path: '/dashboards',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppParceirosRoute = AppParceirosRouteImport.update({
+  id: '/parceiros',
+  path: '/parceiros',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRankingRoute = AppRankingRouteImport.update({
+  id: '/ranking',
+  path: '/ranking',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppVisaoGeralRoute = AppVisaoGeralRouteImport.update({
+  id: '/visao-geral',
+  path: '/visao-geral',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/entrar': typeof EntrarRoute
+  '/app/configuracoes': typeof AppConfiguracoesRoute
+  '/app/dashboards': typeof AppDashboardsRoute
+  '/app/parceiros': typeof AppParceirosRoute
+  '/app/ranking': typeof AppRankingRoute
+  '/app/visao-geral': typeof AppVisaoGeralRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/entrar': typeof EntrarRoute
+  '/app/configuracoes': typeof AppConfiguracoesRoute
+  '/app/dashboards': typeof AppDashboardsRoute
+  '/app/parceiros': typeof AppParceirosRoute
+  '/app/ranking': typeof AppRankingRoute
+  '/app/visao-geral': typeof AppVisaoGeralRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/entrar': typeof EntrarRoute
+  '/app/configuracoes': typeof AppConfiguracoesRoute
+  '/app/dashboards': typeof AppDashboardsRoute
+  '/app/parceiros': typeof AppParceirosRoute
+  '/app/ranking': typeof AppRankingRoute
+  '/app/visao-geral': typeof AppVisaoGeralRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/entrar'
+    | '/app/configuracoes'
+    | '/app/dashboards'
+    | '/app/parceiros'
+    | '/app/ranking'
+    | '/app/visao-geral'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/entrar'
+    | '/app/configuracoes'
+    | '/app/dashboards'
+    | '/app/parceiros'
+    | '/app/ranking'
+    | '/app/visao-geral'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/entrar'
+    | '/app/configuracoes'
+    | '/app/dashboards'
+    | '/app/parceiros'
+    | '/app/ranking'
+    | '/app/visao-geral'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  EntrarRoute: typeof EntrarRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +148,89 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/entrar': {
+      id: '/entrar'
+      path: '/entrar'
+      fullPath: '/entrar'
+      preLoaderRoute: typeof EntrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/configuracoes': {
+      id: '/app/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/app/configuracoes'
+      preLoaderRoute: typeof AppConfiguracoesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dashboards': {
+      id: '/app/dashboards'
+      path: '/dashboards'
+      fullPath: '/app/dashboards'
+      preLoaderRoute: typeof AppDashboardsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/parceiros': {
+      id: '/app/parceiros'
+      path: '/parceiros'
+      fullPath: '/app/parceiros'
+      preLoaderRoute: typeof AppParceirosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ranking': {
+      id: '/app/ranking'
+      path: '/ranking'
+      fullPath: '/app/ranking'
+      preLoaderRoute: typeof AppRankingRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/visao-geral': {
+      id: '/app/visao-geral'
+      path: '/visao-geral'
+      fullPath: '/app/visao-geral'
+      preLoaderRoute: typeof AppVisaoGeralRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppConfiguracoesRoute: typeof AppConfiguracoesRoute
+  AppDashboardsRoute: typeof AppDashboardsRoute
+  AppParceirosRoute: typeof AppParceirosRoute
+  AppRankingRoute: typeof AppRankingRoute
+  AppVisaoGeralRoute: typeof AppVisaoGeralRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppConfiguracoesRoute: AppConfiguracoesRoute,
+  AppDashboardsRoute: AppDashboardsRoute,
+  AppParceirosRoute: AppParceirosRoute,
+  AppRankingRoute: AppRankingRoute,
+  AppVisaoGeralRoute: AppVisaoGeralRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  EntrarRoute: EntrarRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
