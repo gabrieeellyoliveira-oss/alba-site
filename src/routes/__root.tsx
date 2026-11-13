@@ -81,8 +81,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Orbe | Ecossistemas que crescem juntos" },
-      { property: "og:site_name", content: "Orbe" },
+      { title: "ORBE | Ecossistemas que crescem juntos." },
+      { property: "og:site_name", content: "ORBE" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

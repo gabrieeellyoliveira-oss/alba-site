@@ -93,13 +93,16 @@ export function Orbe({ size = 44, rotulo }: { size?: number; rotulo?: string }) 
   );
 }
 
-export function Logo({ to = "/", size = "md" }: { to?: string; size?: "sm" | "md" }) {
+export function Logo({ to = "/", size = "md", slogan = false }: { to?: string; size?: "sm" | "md"; slogan?: boolean }) {
   const px = size === "sm" ? 36 : 44;
   const txt = size === "sm" ? "text-xl" : "text-[26px]";
   return (
-    <Link to={to} className="flex items-center gap-2 rounded-full" aria-label="ORBE, início">
+    <Link to={to} className="flex items-center gap-2 rounded-full" aria-label="ORBE, Ecossistemas que crescem juntos. Início">
       <Orbe size={px} />
-      <span className={`${txt} font-bold tracking-[-0.03em]`}>ORBE</span>
+      <span className="flex flex-col leading-none">
+        <span className={`${txt} font-bold tracking-[-0.03em]`}>ORBE</span>
+        {slogan && <span className="mt-1 hidden text-xs font-medium text-muted-foreground sm:block">Ecossistemas que crescem juntos.</span>}
+      </span>
     </Link>
   );
 }
