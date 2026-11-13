@@ -48,7 +48,7 @@ function Nav() {
   const links = [["Como funciona", "#como-funciona"], ["Planos", "#planos"], ["Dúvidas", "#perguntas"]];
   return (
     <header className="sticky top-0 z-40 bg-background/85 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
+      <div className="mx-auto flex max-w-[1840px] items-center justify-between gap-4 px-5 sm:px-10 py-4">
         <Logo slogan />
         <nav aria-label="Principal" className="hidden rounded-full bg-surface p-1.5 shadow-soft md:block">
           <ul className="flex">{links.map(([l, h]) => <li key={h}><a href={h} className="inline-flex min-h-11 items-center rounded-full px-5 font-medium text-muted-foreground transition hover:bg-lilac hover:text-foreground">{l}</a></li>)}</ul>
@@ -139,7 +139,7 @@ function Index() {
       <Nav />
       <main id="conteudo">
         {/* Hero */}
-        <section className="mx-auto grid max-w-6xl items-center gap-14 px-5 pb-20 pt-10 lg:grid-cols-[1.1fr_1fr] lg:pt-16">
+        <section className="mx-auto grid max-w-[1840px] items-center gap-14 px-5 sm:px-10 lg:gap-20 pb-20 pt-10 lg:grid-cols-[1.1fr_1fr] lg:pt-16">
           <div className="reveal">
             <Tag>Para empresas que vendem com parceiros</Tag>
             <h1 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">Seus parceiros, suas metas e seus treinamentos em um só painel.</h1>
@@ -155,8 +155,8 @@ function Index() {
         </section>
 
         {/* Problema */}
-        <section className="px-3 sm:px-5">
-          <div className="reveal mx-auto max-w-6xl rounded-[2.5rem] bg-ink px-6 py-14 text-ink-foreground sm:px-12 sm:py-20">
+        <section className="px-3 sm:px-10">
+          <div className="reveal mx-auto max-w-[1840px] rounded-[2.5rem] bg-ink px-6 py-14 text-ink-foreground sm:px-12 sm:py-20">
             <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-tight sm:text-5xl">Sua rede de parceiros cresceu. O controle ficou na planilha.</h2>
             <div className="mt-12 grid gap-4 md:grid-cols-3">
               {[["Ninguém sabe quem está vendendo", "Os números de cada parceiro ficam espalhados em planilhas, CRM e conversas de WhatsApp."], ["A meta só aparece no fim do mês", "Quando o time percebe que não vai bater, já não dá mais tempo de reagir."], ["Parceiro novo demora a vender", "O treinamento é solto, cada um aprende de um jeito e muitos desistem antes da primeira venda."]].map(([t, d], i) => (
@@ -171,7 +171,7 @@ function Index() {
         </section>
 
         {/* Pilares */}
-        <section id="como-funciona" className="mx-auto max-w-6xl px-5 py-24">
+        <section id="como-funciona" className="mx-auto max-w-[1840px] px-5 sm:px-10 py-24">
           <div className="reveal max-w-3xl">
             <Tag>O que tem no painel</Tag>
             <h2 className="mt-5 text-3xl font-bold leading-tight tracking-tight sm:text-5xl">Três coisas que hoje vivem separadas, finalmente juntas.</h2>
@@ -191,7 +191,7 @@ function Index() {
 
         {/* Passos */}
         <section className="bg-lilac py-24">
-          <div className="mx-auto max-w-6xl px-5">
+          <div className="mx-auto max-w-[1840px] px-5 sm:px-10">
             <div className="reveal max-w-3xl">
               <Tag tone="light">Sem dor de cabeça</Tag>
               <h2 className="mt-5 text-3xl font-bold leading-tight tracking-tight sm:text-5xl">Você não configura nada. A gente entrega pronto.</h2>
@@ -209,7 +209,7 @@ function Index() {
         </section>
 
         {/* Planos */}
-        <section id="planos" className="mx-auto max-w-6xl px-5 py-24">
+        <section id="planos" className="mx-auto max-w-[1840px] px-5 sm:px-10 py-24">
           <div className="reveal mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold leading-tight tracking-tight sm:text-5xl">Comece com o essencial. Cresça quando quiser.</h2>
             <p className="mt-4 text-lg text-muted-foreground">Crie sua conta grátis e faça upgrade quando quiser.</p>
@@ -252,8 +252,8 @@ function Index() {
         </section>
 
         {/* Chamada final */}
-        <section id="comecar" className="px-3 pb-10 sm:px-5">
-          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-night px-6 py-14 text-center text-ink-foreground sm:px-12 sm:py-20">
+        <section id="comecar" className="px-3 pb-10 sm:px-10">
+          <div className="relative mx-auto max-w-[1840px] overflow-hidden rounded-[2.5rem] bg-night px-6 py-14 text-center text-ink-foreground sm:px-12 sm:py-20">
             <Blob className="-bottom-28 -right-28 h-80 w-80 text-pink" />
             <h2 className="reveal relative mx-auto max-w-3xl text-3xl font-bold leading-tight tracking-tight sm:text-5xl">Sua rede de parceiros, em um só lugar.</h2>
             <p className="reveal relative mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-muted">Crie sua conta grátis e cadastre até 10 parceiros. Quando quiser mais, é só fazer upgrade.</p>
@@ -261,7 +261,7 @@ function Index() {
           </div>
         </section>
       </main>
-      <footer className="mx-auto flex max-w-6xl flex-col justify-between gap-2 px-5 py-10 text-sm text-muted-foreground sm:flex-row">
+      <footer className="mx-auto flex max-w-[1840px] flex-col justify-between gap-2 px-5 sm:px-10 py-10 text-sm text-muted-foreground sm:flex-row">
         <p>ORBE · {SLOGAN}</p>
         <p>© 2026 ORBE</p>
       </footer>

@@ -120,6 +120,15 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  // Links de convite e de "esqueci a senha" da Supabase podem cair em qualquer página
+  // (ex.: a Site URL). Leva para /nova-senha, que lê a sessão do link e pede a senha.
+  useEffect(() => {
+    const h = window.location.hash;
+    if (/type=(invite|recovery)/.test(h) && window.location.pathname !== "/nova-senha") {
+      window.location.replace(`/nova-senha${h}`);
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}

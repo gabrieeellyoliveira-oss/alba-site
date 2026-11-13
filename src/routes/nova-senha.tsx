@@ -34,7 +34,8 @@ function NovaSenha() {
     <div className="min-h-screen bg-background px-4 pb-8 pt-6 sm:px-8">
       <Logo />
       <main className="mx-auto mt-12 max-w-md rounded-[32px] bg-surface p-8 sm:p-10">
-        <h1 className="text-3xl font-bold tracking-tight">Crie uma senha nova</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Crie sua senha</h1>
+        <p className="mt-2 text-muted-foreground">Defina a senha que você vai usar para entrar na ORBE.</p>
         {sessao === undefined ? (
           <p className="mt-4 flex items-center gap-2 text-muted-foreground" role="status"><Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" /> Conferindo o link…</p>
         ) : sessao === null ? (
