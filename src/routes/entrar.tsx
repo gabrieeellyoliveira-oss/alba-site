@@ -11,10 +11,14 @@ type Busca = { modo?: Modo; plano?: Plano };
 
 export const Route = createFileRoute("/entrar")({
   ssr: false,
-  validateSearch: (s: Record<string, unknown>): Busca => ({
-    modo: s.modo === "login" || s.modo === "cadastro" || s.modo === "esqueci" ? s.modo : undefined,
-    plano: s.plano === "pro" ? "pro" : s.plano === "gratuito" ? "gratuito" : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): Busca => {
+    const b: Busca = {};
+    const modo = s["modo"];
+    const plano = s["plano"];
+    if (modo === "login" || modo === "cadastro" || modo === "esqueci") b.modo = modo;
+    if (plano === "pro" || plano === "gratuito") b.plano = plano;
+    return b;
+  },
   head: () => ({
     meta: [
       { title: "Entrar | ORBE" },
