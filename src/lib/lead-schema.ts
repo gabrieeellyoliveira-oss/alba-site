@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const FAIXAS = ["Até 10", "11 a 30", "31 a 100", "Mais de 100"] as const;
-export const PLANOS = ["Ainda não sei", "Essencial", "Pro", "Completo"] as const;
+export const PLANOS = ["Ainda não sei", "Gratuito", "Pro"] as const;
 
 const opt = (max: number) =>
   z.string().trim().max(max).optional().transform((v) => (v ? v : null));

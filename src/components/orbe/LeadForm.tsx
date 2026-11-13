@@ -1,11 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Check, Loader2 } from "lucide-react";
-import { FAIXAS, leadSchema, maskWhatsapp } from "@/lib/lead-schema";
-
-/** Planos mostrados no site. A tabela de pedidos ainda usa os nomes antigos: Gratuito é gravado como "Essencial". */
-export const PLANOS_SITE = ["Ainda não sei", "Gratuito", "Pro"] as const;
-const paraBanco = (p: string) => (p === "Gratuito" ? "Essencial" : p === "Pro" ? "Pro" : "Ainda não sei");
+import { FAIXAS, PLANOS, leadSchema, maskWhatsapp } from "@/lib/lead-schema";
 import { submitLead } from "@/lib/leads.functions";
 
 type Errors = Partial<Record<string, string>>;
@@ -28,7 +24,7 @@ export function LeadForm({ plano, setPlano }: { plano: string; setPlano: (p: str
       empresa: String(fd.get("empresa") ?? ""),
       whatsapp: whats,
       faixa_parceiros: String(fd.get("faixa_parceiros") ?? ""),
-      plano_interesse: paraBanco(plano),
+      plano_interesse: plano,
       como_acompanham: String(fd.get("como_acompanham") ?? ""),
       origem: (window.location.pathname + window.location.search).slice(0, 500),
       utm_source: params.get("utm_source")?.slice(0, 200) ?? "",
@@ -79,7 +75,7 @@ export function LeadForm({ plano, setPlano }: { plano: string; setPlano: (p: str
           </select>{err("faixa_parceiros")}</div>
         <div><label htmlFor="f-plano_interesse" className={label}>Plano de interesse</label>
           <select name="plano_interesse" value={plano} onChange={(e) => setPlano(e.target.value)} className={field} {...aria("plano_interesse")}>
-            {PLANOS_SITE.map((p) => <option key={p}>{p}</option>)}
+            {PLANOS.map((p) => <option key={p}>{p}</option>)}
           </select></div>
         <div className="sm:col-span-2"><label htmlFor="f-como_acompanham" className={label}>Como vocês acompanham os parceiros hoje? <span className="font-normal text-muted-foreground">(opcional)</span></label>
           <textarea name="como_acompanham" rows={3} maxLength={1000} className={field} {...aria("como_acompanham")} />{err("como_acompanham")}</div>
