@@ -3,7 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState, type FormEvent } from "react";
 import { Check, Loader2, Plus, Trash2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { useConta } from "@/routes/app";
+import { useConta } from "@/lib/conta-contexto";
 import { Cabecalho, Carregando, SeletorMes, Vazio } from "@/components/orbe/Comum";
 import { mensagemDeErro, useParceiros, useVendas, type Parceiro, type Venda } from "@/lib/conta";
 import { inicioDoMes, LIMITE_GRATUITO, STATUS } from "@/lib/orbe";

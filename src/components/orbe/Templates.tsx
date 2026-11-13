@@ -1,7 +1,7 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, Crown, Lock } from "lucide-react";
-import { useConta } from "@/routes/app";
+import { useConta } from "@/lib/conta-contexto";
 import { useAtualizarPerfil } from "@/lib/conta";
 import type { Template } from "@/lib/orbe";
 

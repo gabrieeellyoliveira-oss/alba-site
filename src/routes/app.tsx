@@ -1,11 +1,11 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Bell, CircleHelp, Home, LayoutGrid, Loader2, LogOut, Menu, Settings, Sparkles } from "lucide-react";
-import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { Logo } from "@/components/orbe/Logo";
 import { ProModal } from "@/components/orbe/ProModal";
-import { usePerfil, useSessao, type Perfil } from "@/lib/conta";
+import { usePerfil, useSessao } from "@/lib/conta";
+import { ContaCtx } from "@/lib/conta-contexto";
 import { linkWhatsapp } from "@/lib/orbe";
 
 type Busca = { pro?: boolean };
@@ -17,13 +17,6 @@ export const Route = createFileRoute("/app")({
   component: AreaDoCliente,
 });
 
-type Ctx = { sessao: Session; perfil: Perfil; abrirPro: () => void };
-const ContaCtx = createContext<Ctx | null>(null);
-export function useConta() {
-  const c = useContext(ContaCtx);
-  if (!c) throw new Error("useConta fora da área do cliente");
-  return c;
-}
 
 const MENU = [
   { to: "/app", rotulo: "Início", icone: Home, exato: true },

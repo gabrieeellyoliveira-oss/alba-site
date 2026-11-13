@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { Check, Gem, Loader2, LogOut } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { useConta } from "@/routes/app";
+import { useConta } from "@/lib/conta-contexto";
 import { Cabecalho } from "@/components/orbe/Comum";
 import { mensagemDeErro, useAtualizarPerfil } from "@/lib/conta";
 

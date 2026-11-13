@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { DollarSign, PauseCircle, UserPlus, Users } from "lucide-react";
-import { useConta } from "@/routes/app";
+import { useConta } from "@/lib/conta-contexto";
 import { Cabecalho, Carregando, Kpi, SeletorMes, Vazio } from "@/components/orbe/Comum";
 import { useParceiros, useVendas } from "@/lib/conta";
 import { brl, inicioDoMes, nomeDoMes, somarMeses, STATUS } from "@/lib/orbe";

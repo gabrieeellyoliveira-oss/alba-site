@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Trophy } from "lucide-react";
-import { useConta } from "@/routes/app";
+import { useConta } from "@/lib/conta-contexto";
 import { Cabecalho, Carregando, SeletorMes, Vazio } from "@/components/orbe/Comum";
 import { useParceiros, useVendas } from "@/lib/conta";
 import { brl, inicioDoMes, nomeDoMes } from "@/lib/orbe";

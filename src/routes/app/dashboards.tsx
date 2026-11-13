@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { useConta } from "@/routes/app";
+import { useConta } from "@/lib/conta-contexto";
 import { Cabecalho, Vazio } from "@/components/orbe/Comum";
 import { useAtualizarPerfil } from "@/lib/conta";
 import { TEMPLATES } from "@/lib/orbe";

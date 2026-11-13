@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, Calendar, Crown, Sparkles } from "lucide-react";
-import { useConta } from "@/routes/app";
+import { useConta } from "@/lib/conta-contexto";
 import { CartaoTemplate } from "@/components/orbe/Templates";
 import { TEMPLATES } from "@/lib/orbe";
 
